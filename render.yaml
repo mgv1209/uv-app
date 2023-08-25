@@ -2,17 +2,8 @@ services:
   - type: web
     name: myapp
     env: node
-    plan: free
-    envVars:
-      - key: NPM_FLAGS
-        value: '--prefix ./client'
+    repo: https://github.com/nunera/Ultraviolet-App
     buildCommand: npm install
     startCommand: npm start
-    healthCheckPath: /
-    autoDeploy: false
-    region: virginia
-    numInstances: 1
-
-databases:
-  - name: mydb
     plan: free
+    autoDeploy: false
