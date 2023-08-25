@@ -1,7 +1,7 @@
 services:
   - type: web
     name: myapp
-    env: nodejs
+    env: node
     plan: free
     envVars:
       - key: NPM_FLAGS
