@@ -1,8 +1,7 @@
 services:
   - type: web
-    name: myapp
+    name: ultraviolet
     env: node
-    repo: https://github.com/nunera/Ultraviolet-App.git
     buildCommand: npm install
     startCommand: npm start
     plan: free
