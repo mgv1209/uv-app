@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: myapp
+    env: nodejs
+    plan: free
+    envVars:
+      - key: NPM_FLAGS
+        value: '--prefix ./client'
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    autoDeploy: false
+    persistentDisk: false
+    region: virginia
+    numInstances: 1
+    github:
+      repo: myrepo
+      branch: main
+      deployOnPush: true
+
+databases:
+  - name: mydb
+    plan: free
