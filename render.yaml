@@ -1,34 +1,18 @@
-version: 0.3
-name: myapp
-
 services:
-  - name: myapp
-    type: web
-    lifecycle:
-      buildCommand: npm install
-      startCommand: npm start
-      debuggerCommand: node --inspect=0.0.0.0:9229 --debug-brk index.js
-    environment:
-      NODE_VERSION: '17'
-      PACKAGER: 'npm'
-    env: 
-      NPM_FLAGS: '--prefix ./client'
-    healthCheck: 
-      type: http 
-      path: /
-    nodejs: 
-      runtime: nodejs 
-      dependencies: 
-        - "npm>=6.14.15"
-    port: 3000
-    region: us-east-1
-    github:
-      cloneUrl: "https://github.com/user/myapp.git"
-      deploy:
-        environment: "production"
-        entrypoint: "."
-        onPush: true
-      
-config:
-  nix:
-    channel: "stable-22_05"
+  - type: web
+    name: myapp
+    env: nodejs
+    plan: free
+    envVars:
+      - key: NPM_FLAGS
+        value: '--prefix ./client'
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    autoDeploy: false
+    region: virginia
+    numInstances: 1
+
+databases:
+  - name: mydb
+    plan: free
